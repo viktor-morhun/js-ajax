@@ -7,18 +7,17 @@
   <link rel="stylesheet" href="style.css">
   <script src="domApp.js" defer type="module"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
 </head>
 <body>
    <header class="header">
-    <div class="header__logo">
-        <a href="#" onclick="window.location.reload(true);">MovieFlix</a>
+    <div class="header__logo-container">
+        <a class="header__logo" href="#" onclick="window.location.reload(true);">MovieFlix</a>
     </div>
     <nav class="header__nav">
         <a href="#" class="header__link">Home</a>
         <a href="#" class="header__link">TV Shows</a>
-        <a href="#" class="header__link">Movies</a>
+        <a href="#" class="header__link header__link-active">Movies</a>
         <a href="#" class="header__link">Latest</a>
         <a href="#" class="header__link">My List</a>
     </nav>
@@ -39,34 +38,12 @@
     <section class="movie-carousel">
         <h2 class="movie-carousel__title">Search Results</h2>
         <div id="results-container" class="movie-carousel__list">
-            <!-- <div class="movie-card">
-                <img src="0000009.jpg" alt="Movie Poster" class="movie-card__image">
-                <div class="movie-card__overlay">
-                    <h3 class="movie-card__title">Movie Title</h3>
-                    <p class="movie-card__year">2024</p>
-                    <button class="movie-card__details-button">Details</button>
-                </div>
-            </div>  -->
+
         </div>
     </section>
 
     <div id="pagination-container" class="pagination">
-        <!-- <div class="pagination-container">
-            <div class="pagination-number arrow" id="previousPage">
-                <span class="material-symbols-outlined">
-                  chevron_left
-                </span>
-              <span class="arrow-text">Previous</span> 
-            </div>
 
-            <input type="number" class="pagination-input" id="currentPage" min="1" max="18">
-
-            <div class="pagination-number arrow" >
-                <span class="material-symbols-outlined" id="nextPage">
-                    chevron_right
-                </span>
-            </div>
-          </div>-->
     </div> 
 </main>
 

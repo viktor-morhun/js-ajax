@@ -6,6 +6,11 @@
   box-sizing: border-box;
 }
 
+  
+a {
+  text-decoration: none;
+}
+
 body {
   font-family: "Helvetica Neue", Arial, sans-serif;
   background-color: rgba(20, 20, 20, 1);
@@ -33,11 +38,6 @@ body {
     color: rgba(229, 9, 20, 1);
   }
 
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-
   &__nav {
     display: flex;
     gap: 20px;
@@ -52,8 +52,11 @@ body {
     &:hover {
       color: rgba(229, 9, 20, 1);
     }
-  }
 
+  }
+  &__link-active {
+    color: red;
+  }
   &__search {
     display: flex;
     align-items: center;
@@ -97,6 +100,12 @@ body {
       }
     }
   }
+
+ 
+}
+
+#header__link-active {
+  color: red;
 }
 
 .content {
@@ -105,6 +114,8 @@ body {
 
 .movie-carousel {
   height: 80vh;
+  width: 1440px;
+  margin: 0 auto;
   &__title {
     font-size: 24px;
     margin-bottom: 10px;
@@ -114,6 +125,7 @@ body {
   &__list {
     display: flex;
     gap: 20px;
+    flex-wrap: wrap;
     overflow-x: scroll;
     padding-bottom: 20px;
   }
@@ -135,7 +147,7 @@ body {
 
 .movie-card {
   background-color: rgba(51, 51, 51, 1);
-  width: 200px;
+  width: 250px;
   border-radius: 8px;
   position: relative;
   overflow: hidden;
@@ -288,6 +300,10 @@ body {
     }
     &:active {
       background: lighten(#202020, 3%);
+    }
+    &-total {
+      background: transparent;
+      margin: 0;
     }
   }
   .pagination-input {

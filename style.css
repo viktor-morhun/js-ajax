@@ -7,6 +7,10 @@
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+}
+
 body {
   font-family: "Helvetica Neue", Arial, sans-serif;
   background-color: rgb(20, 20, 20);
@@ -32,10 +36,6 @@ body::-webkit-scrollbar {
   font-weight: bold;
   color: rgb(229, 9, 20);
 }
-.header a {
-  text-decoration: none;
-  color: inherit;
-}
 .header__nav {
   display: flex;
   gap: 20px;
@@ -48,6 +48,9 @@ body::-webkit-scrollbar {
 }
 .header__link:hover {
   color: rgb(229, 9, 20);
+}
+.header__link-active {
+  color: red;
 }
 .header__search {
   display: flex;
@@ -88,12 +91,18 @@ body::-webkit-scrollbar {
   background-color: rgb(244, 6, 18);
 }
 
+#header__link-active {
+  color: red;
+}
+
 .content {
   padding: 100px 40px;
 }
 
 .movie-carousel {
   height: 80vh;
+  width: 1440px;
+  margin: 0 auto;
 }
 .movie-carousel__title {
   font-size: 24px;
@@ -103,6 +112,7 @@ body::-webkit-scrollbar {
 .movie-carousel__list {
   display: flex;
   gap: 20px;
+  flex-wrap: wrap;
   overflow-x: scroll;
   padding-bottom: 20px;
 }
@@ -121,7 +131,7 @@ body::-webkit-scrollbar {
 
 .movie-card {
   background-color: rgb(51, 51, 51);
-  width: 200px;
+  width: 250px;
   border-radius: 8px;
   position: relative;
   overflow: hidden;
@@ -262,6 +272,10 @@ body .pagination-number {
 }
 body .pagination-number:active {
   background: #282828;
+}
+body .pagination-number-total {
+  background: transparent;
+  margin: 0;
 }
 body .pagination-input {
   --size: 32px;
