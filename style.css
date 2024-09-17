@@ -1,4 +1,7 @@
-*, *::after, *::before {
+@import url("https://rsms.me/inter/inter.css");
+*,
+*::after,
+*::before {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -90,7 +93,7 @@ body::-webkit-scrollbar {
 }
 
 .movie-carousel {
-  height: 85vh;
+  height: 80vh;
 }
 .movie-carousel__title {
   font-size: 24px;
@@ -191,4 +194,106 @@ body::-webkit-scrollbar {
   text-align: center;
   color: rgb(153, 153, 153);
   font-size: 14px;
+}
+
+html {
+  font-family: "Inter", sans-serif;
+}
+
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: "Inter var", sans-serif;
+  }
+}
+:root {
+  --bg-page: #1a1a1a;
+  --text-color: #f3f3f3;
+  --card-bg: #202020;
+  --icon-bg: #45423c;
+  --blue: #0870f8;
+  --blue-rgb: 8, 112, 248;
+  --orange: #ff9232;
+  --g-purple: linear-gradient(30deg, #85f, #9966ff);
+  --g-yellow: linear-gradient(30deg, #fc0, #fc0);
+  --g-red: linear-gradient(30deg, #f36, #f24);
+  --g-blue: linear-gradient(30deg, #0cf, #0af);
+  --g-purple: linear-gradient(30deg, #85f, #9966ff);
+  --range: 0%;
+  --shadow: rgba(0, 6, 39, 0.1);
+  --light-shadow: rgba(255, 255, 255, 0.8);
+  --light-shadow-2: rgba(255, 255, 255, 0.1);
+}
+
+body .hide {
+  display: none;
+  visibility: hidden;
+  height: 0;
+}
+body .pagination-container {
+  display: flex;
+  align-items: center;
+}
+body .arrow-text {
+  display: block;
+  font-size: 13px;
+}
+body .pagination-number {
+  --size: 32px;
+  --margin: 6px;
+  margin: 0 var(--margin);
+  border-radius: 6px;
+  background: #202020;
+  max-width: auto;
+  min-width: var(--size);
+  height: var(--size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  padding: 0 6px;
+}
+@media (hover: hover) {
+  body .pagination-number:hover {
+    background: #282828;
+  }
+}
+body .pagination-number:active {
+  background: #282828;
+}
+body .pagination-input {
+  --size: 32px;
+  --width: 48px;
+  --margin: 6px;
+  margin: 0 var(--margin);
+  width: var(--width);
+  text-align: center;
+  border-radius: 6px;
+  color: var(--text-color);
+  background: #202020;
+  height: var(--size);
+  cursor: pointer;
+  border: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  padding: 6px;
+}
+@media (hover: hover) {
+  body .pagination-input:hover {
+    background: #282828;
+  }
+}
+body .pagination-input:active {
+  background: #282828;
+}
+body .pagination-input::-webkit-outer-spin-button, body .pagination-input::-webkit-inner-spin-button {
+  display: none;
+  margin: 0;
+}
+body .pagination-active {
+  background: #282828;
+  position: relative;
 }/*# sourceMappingURL=style.css.map */

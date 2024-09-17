@@ -47,11 +47,11 @@ class domApp {
   searchMovies() {
     event.preventDefault();
     const searchBarElement = document.getElementById('movie-title');
-    const searchQuerry = searchBarElement.value;
-    this.getMoviesByQuerry(searchQuerry);
+    this.searchQuerry = searchBarElement.value;
+    this.getMoviesByQuerry(this.searchQuerry);
   }
-  getMoviesByQuerry = async (querry) => {
-    const resultOfSearch = await fetchData(`${FETCH_BASE_URL}${querry}${apikey}`);
+  getMoviesByQuerry = async (querry = this.searchQuerry) => {
+    const resultOfSearch = await fetchData(`${FETCH_BASE_URL}${querry}${apikey}&page=${this.currentPage}`);
     console.log(resultOfSearch);
 
     if (resultOfSearch.Error) {
@@ -59,10 +59,11 @@ class domApp {
     } else {
       this.searchResult = resultOfSearch.Search;
       this.renderMoviesList(this.searchResult);
-
+      
       if(resultOfSearch.totalResults > 10) {
-        this.totalResults = resultOfSearch.totalResults;
-        console.log('pagination')
+        this.totalResults = Math.ceil(resultOfSearch.totalResults/10);
+        console.log('pagination', this.totalResults);
+        this.renderPagination();
       }
     }
 
@@ -78,7 +79,56 @@ class domApp {
   renderPagination() {
     const paginationElement = document.getElementById('pagination-container');
     
-    paginationElement.innerHTML = '';
+
+    paginationElement.innerHTML = `
+        <div class="pagination-container">
+            <div class="pagination-number arrow" id="previousPage">
+                <span class="material-symbols-outlined">
+                  chevron_left
+                </span>
+              <span class="arrow-text">Previous</span> 
+            </div>
+
+            <input type="number" class="pagination-input" id="currentPage" min="1" max="${this.totalResults}" value=${this.currentPage}>
+
+            <div class="pagination-number arrow" >
+                <span class="material-symbols-outlined" id="nextPage">
+                    chevron_right
+                </span>
+            </div>
+          </div>`;
+    
+    const pageNumberElement = document.getElementById('currentPage');
+    pageNumberElement.removeEventListener('change', this.setPaginationPage);
+    pageNumberElement.addEventListener('change', this.setPaginationPage);
+    paginationElement.removeEventListener('click', this.changePaginationPage);
+    paginationElement.addEventListener('click', this.changePaginationPage);
+  }
+
+  changePaginationPage = () => {
+    if (event.target.closest('#previousPage')) {
+      console.log(this.currentPage);
+      this.currentPage = (this.currentPage - 1 === 0) ? 1 : --this.currentPage;
+      console.log(this.currentPage);
+      this.getMoviesByQuerry();
+    } else if (event.target.id === 'nextPage') {
+      this.currentPage = (this.currentPage === this.totalResults) 
+        ? this.currentPage 
+        : ++this.currentPage;
+      this.getMoviesByQuerry();
+    }
+  }
+
+  setPaginationPage = () => {
+    const inputPageNumber = Number(event.target.value);
+    if (inputPageNumber > this.totalResults) {
+      this.currentPage = this.totalResults;
+    } else if (inputPageNumber < 1) {
+      this.currentPage = 1;
+    } else {
+      this.currentPage = inputPageNumber;
+    }
+      this.getMoviesByQuerry();
   }
 }
 

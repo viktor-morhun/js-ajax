@@ -1,11 +1,13 @@
-*, *::after, *::before {
+*,
+*::after,
+*::before {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Helvetica Neue", Arial, sans-serif;
   background-color: rgba(20, 20, 20, 1);
   color: rgba(255, 255, 255, 1);
 
@@ -31,10 +33,10 @@ body {
     color: rgba(229, 9, 20, 1);
   }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 
   &__nav {
     display: flex;
@@ -102,7 +104,7 @@ body {
 }
 
 .movie-carousel {
-  height: 85vh;
+  height: 80vh;
   &__title {
     font-size: 24px;
     margin-bottom: 10px;
@@ -214,4 +216,112 @@ body {
   text-align: center;
   color: rgba(153, 153, 153, 1);
   font-size: 14px;
+}
+
+// pagination
+@import url("https://rsms.me/inter/inter.css");
+
+html {
+  font-family: "Inter", sans-serif;
+}
+
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: "Inter var", sans-serif;
+  }
+}
+:root {
+  --bg-page: #1a1a1a;
+  --text-color: #f3f3f3;
+  --card-bg: #202020;
+  --icon-bg: #45423c;
+  --blue: #0870f8;
+  --blue-rgb: 8, 112, 248;
+  --orange: #ff9232;
+  --g-purple: linear-gradient(30deg, #85f, #9966ff);
+  --g-yellow: linear-gradient(30deg, #fc0, #fc0);
+  --g-red: linear-gradient(30deg, #f36, #f24);
+  --g-blue: linear-gradient(30deg, #0cf, #0af);
+  --g-purple: linear-gradient(30deg, #85f, #9966ff);
+  --range: 0%;
+  --shadow: rgba(0, 6, 39, 0.1);
+  --light-shadow: rgba(255, 255, 255, 0.8);
+  --light-shadow-2: rgba(255, 255, 255, 0.1);
+}
+
+body {
+  .hide {
+    display: none;
+    visibility: hidden;
+    height: 0;
+  }
+
+  .pagination-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .arrow-text {
+    display: block;
+    font-size: 13px;
+  }
+
+  .pagination-number {
+    --size: 32px;
+    --margin: 6px;
+    margin: 0 var(--margin);
+    border-radius: 6px;
+    background: #202020;
+    max-width: auto;
+    min-width: var(--size);
+    height: var(--size);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+    padding: 0 6px;
+    @media (hover: hover) {
+      &:hover {
+        background: lighten(#202020, 3%);
+      }
+    }
+    &:active {
+      background: lighten(#202020, 3%);
+    }
+  }
+  .pagination-input {
+    --size: 32px;
+    --width: 48px;
+    --margin: 6px;
+    margin: 0 var(--margin);
+    width: var(--width);
+    text-align: center;
+    border-radius: 6px;
+    color: var(--text-color);
+    background: #202020;
+    height: var(--size);
+    cursor: pointer;
+    border: none;
+    user-select: none;
+    padding: 6px;
+    @media (hover: hover) {
+      &:hover {
+        background: lighten(#202020, 3%);
+      }
+    }
+    &:active {
+      background: lighten(#202020, 3%);
+    }
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      display: none;
+      margin: 0;
+    }
+  }
+
+  .pagination-active {
+    background: lighten(#202020, 3%);
+    position: relative;
+  }
 }
