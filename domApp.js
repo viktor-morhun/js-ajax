@@ -52,6 +52,7 @@ class domApp {
     event.preventDefault();
     const searchBarElement = document.getElementById("movie-title");
     this.searchQuerry = searchBarElement.value;
+    this.currentPage = 1;
     this.getMoviesByQuerry(this.searchQuerry);
   }
   getMoviesByQuerry = async (querry = this.searchQuerry) => {
