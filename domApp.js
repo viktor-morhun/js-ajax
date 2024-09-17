@@ -14,11 +14,7 @@ class domApp {
     this.totalResults = 0;
   }
 
-  setDefaultMovies = async (querry) => {
-    // const moviesList = await fetchData(`${FETCH_BASE_URL}${querry}${apikey}`);
-    // this.moviesData = moviesList.Search;
-    // console.log(this.moviesData);
-    // this.renderMoviesList();
+  setDefaultMovies = async () => {
     this.renderMessage();
     this.addEventListeners();
   };
@@ -53,6 +49,7 @@ class domApp {
     const searchBarElement = document.getElementById("movie-title");
     this.searchQuerry = searchBarElement.value;
     this.currentPage = 1;
+    this.totalResults = 1;
     this.getMoviesByQuerry(this.searchQuerry);
   }
   getMoviesByQuerry = async (querry = this.searchQuerry) => {
@@ -61,6 +58,7 @@ class domApp {
     );
     if (resultOfSearch.Error) {
       this.renderMessage(`Movie ${querry} not found!`);
+      this.removePagination();
     } else {
       this.searchResult = resultOfSearch.Search;
       this.renderMoviesList(this.searchResult);
@@ -68,6 +66,8 @@ class domApp {
       if (resultOfSearch.totalResults > 10) {
         this.totalResults = Math.ceil(resultOfSearch.totalResults / 10);
         this.renderPagination();
+      } else {
+        this.removePagination();
       }
     }
   };
@@ -77,7 +77,6 @@ class domApp {
     searchButtonElement.addEventListener("click", () => this.searchMovies());
   }
 
-  //pagination
   renderPagination() {
     const paginationElement = document.getElementById("pagination-container");
 
@@ -116,6 +115,10 @@ class domApp {
     paginationElement.removeEventListener("click", this.changePaginationPage);
     paginationElement.addEventListener("click", this.changePaginationPage);
   }
+  removePagination() {
+    const paginationElement = document.getElementById("pagination-container");
+    paginationElement.innerHTML = '';
+  }
 
   changePaginationPage = (event) => {
     if (event.target.closest("#previousPage")) {
@@ -151,5 +154,4 @@ class domApp {
 }
 
 const cinema = new domApp("results-container");
-
 cinema.setDefaultMovies();
