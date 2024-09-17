@@ -81,7 +81,6 @@ class domApp {
     const paginationElement = document.getElementById("pagination-container");
 
     paginationElement.innerHTML = `
-        <div class="pagination-container">
           <div class="pagination-number arrow" id="firstPage">
             <span class="material-symbols-outlined">
               keyboard_double_arrow_left
@@ -94,7 +93,7 @@ class domApp {
                 </span>
             </div>
 
-            <input type="number" class="pagination-input" id="currentPage" min="1" max="${this.totalResults}" value=${this.currentPage}>
+            <input type="number" class="pagination-input pagination-number" id="currentPage" min="1" max="${this.totalResults}" value=${this.currentPage}>
             <span class="pagination-number pagination-number-total">of ${this.totalResults}</span>
             <div class="pagination-number arrow" >
 
@@ -108,8 +107,7 @@ class domApp {
                 <span class="material-symbols-outlined">
                   keyboard_double_arrow_right
                 </span>
-              </div>
-          </div>`;
+              </div>`;
 
     const pageNumberElement = document.getElementById("currentPage");
     pageNumberElement.removeEventListener("change", this.setPaginationPage);
