@@ -285,3 +285,82 @@ body {
   background: var(--bg-pagination-light);
   position: relative;
 }
+
+
+
+
+//MODAL MOVIE INFO
+
+.movie-info-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+
+}
+
+.movie-info-modal__content {
+  background-color: var(--bg-page);
+  color: var(--text-color);
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
+
+.movie-info-modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--white-faded);
+  padding-bottom: 10px;
+}
+
+.movie-info-modal__title {
+  font-size: 24px;
+  color: var(--text-color);
+}
+
+.movie-info-modal__close {
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--white-faded);
+}
+
+.movie-info-modal__body {
+  display: flex;
+  gap: 20px;
+}
+
+.movie-info-modal__poster img {
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.movie-info-modal__details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.movie-info-modal__ratings ul {
+  list-style-type: none;
+  padding: 0;
+  color: var(--grey-light);
+}
+
+.movie-info-modal__ratings li {
+  font-size: 14px;
+}
