@@ -1,5 +1,4 @@
 export class renderUI {
-
   static renderMoviesList(moviesList, containerId) {
     const containerElement = document.getElementById(containerId);
     containerElement.innerHTML = moviesList
@@ -25,7 +24,22 @@ export class renderUI {
     containerElement.innerHTML = `<h3 class="movie-carousel__message">${message}</h3>`;
   }
 
-  static renderFullMovieInfo({Title, Year, Poster, Rated, Released, Runtime, Genre, Director, Actors, Plot, Language, Country, Awards, imdbRating}) {
+  static renderFullMovieInfo({
+    Title,
+    Year,
+    Poster,
+    Rated,
+    Released,
+    Runtime,
+    Genre,
+    Director,
+    Actors,
+    Plot,
+    Language,
+    Country,
+    Awards,
+    imdbRating,
+  }) {
     return ` <div class="movie-info-modal hidden">
         <div class="movie-info-modal__content">
           <div class="movie-info-modal__header">
@@ -34,7 +48,9 @@ export class renderUI {
           </div>
           <div class="movie-info-modal__body">
             <div class="movie-info-modal__poster">
-              <img src="${Poster}" alt="Movie Poster">
+              <img src="${
+                Poster === "N/A" ? "no-image-icon.png" : Poster
+              }" alt="Movie Poster">
             </div>
             <div class="movie-info-modal__details">
               <p><strong>Year:</strong>${Year}</p>
@@ -57,6 +73,37 @@ export class renderUI {
             </div>
           </div>
         </div>
-      </div>`
+      </div>`;
+  }
+
+  static renderPagination(totalPageNumber, currentPageNumber) {
+    return `
+          <div class="pagination-number arrow" id="firstPage">
+            <span class="material-symbols-outlined">
+              keyboard_double_arrow_left
+            </span>
+              <span class="arrow-text">First</span> 
+          </div>
+            <div class="pagination-number arrow" id="previousPage">
+                <span class="material-symbols-outlined">
+                  chevron_left
+                </span>
+            </div>
+
+            <input type="number" class="pagination-input pagination-number" id="currentPage" min="1" value=${currentPageNumber}>
+            <span class="pagination-number pagination-number-total">of ${totalPageNumber}</span>
+            <div class="pagination-number arrow" >
+
+                <span class="material-symbols-outlined" id="nextPage">
+                  chevron_right
+                </span>
+            </div>
+              <div class="pagination-number arrow" id="lastPage">
+                <span class="arrow-text">Last</span> 
+
+                <span class="material-symbols-outlined">
+                  keyboard_double_arrow_right
+                </span>
+              </div>`;
   }
 }
