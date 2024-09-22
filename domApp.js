@@ -7,6 +7,7 @@ class domApp {
   constructor(containerId) {
     this.moviesData = {};
     this.searchResult = [];
+    this.movieCache = new Map();
     this.containerId = containerId;
     this.searchQuerry = "";
     this.currentPage = 1;
@@ -15,40 +16,45 @@ class domApp {
   }
 
   setStartPage() {
+    console.log(this.getInfoAboutAOT());
     renderUI.renderMessage(this.containerId);
     this.addEventListeners();
   }
-  searchMovies(event) {
+  searchMovies() {
     event.preventDefault();
     const searchBarElement = document.getElementById("movie-title");
-    this.searchQuerry = searchBarElement.value;
+    this.searchQuerry = searchBarElement.value.trim();
     this.currentPage = 1;
-    this.totalPage = 1;
+    // this.totalPage = 1;
     this.getMoviesByQuerry();
   }
   getMoviesByQuerry = async () => {
-    this.searchResult = await movieService.getFullMovie(
-      this.searchQuerry,
-      "s=",
-      `&page=${this.currentPage}`
-    );
+    if (this.movieCache.has(this.searchQuerry + this.currentPage)) {
+      this.searchResult = this.movieCache.get(this.searchQuerry + this.currentPage);
+      console.log('Cache works')
+    } else {
+      this.searchResult = await movieService.getFullMovie(
+        this.searchQuerry,
+        "s=",
+        `&page=${this.currentPage}`
+      );
+      this.movieCache.set(this.searchQuerry + this.currentPage, this.searchResult);
+      console.log('fetch data')
+    }
 
     if (this.searchResult.Error) {
       renderUI.renderMessage(
         this.containerId,
         `Movie ${this.searchQuerry} not found!`
       );
-      this.removePagination();
+      this.totalPage = 0;
+      this.addPagination();
     } else {
       this.moviesData = this.searchResult.Search;
       renderUI.renderMoviesList(this.moviesData, this.containerId);
 
-      if (this.searchResult.totalResults > 10) {
-        this.totalPage = Math.ceil(this.searchResult.totalResults / 10);
-        this.addPagination();
-      } else {
-        this.removePagination();
-      }
+      this.totalPage = Math.ceil(this.searchResult.totalResults / 10);
+      this.addPagination();
     }
   };
   addEventListeners() {
@@ -73,10 +79,6 @@ class domApp {
     pageNumberElement.addEventListener("change", this.setPaginationPage);
     paginationElement.removeEventListener("click", this.changePaginationPage);
     paginationElement.addEventListener("click", this.changePaginationPage);
-  }
-  removePagination() {
-    const paginationElement = document.getElementById("pagination-container");
-    paginationElement.innerHTML = "";
   }
   changePaginationPage = (event) => {
     if (event.target.closest("#previousPage")) {
@@ -128,4 +130,5 @@ class domApp {
 }
 
 const cinema = new domApp("results-container");
+
 cinema.setStartPage();

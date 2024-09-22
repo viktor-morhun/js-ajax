@@ -77,6 +77,9 @@ export class renderUI {
   }
 
   static renderPagination(totalPageNumber, currentPageNumber) {
+    if(totalPageNumber < 10) {
+      return '';
+    }
     return `
           <div class="pagination-number arrow" id="firstPage">
             <span class="material-symbols-outlined">
