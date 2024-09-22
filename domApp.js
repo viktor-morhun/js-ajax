@@ -1,5 +1,3 @@
-"use strict";
-
 import { renderUI } from "./renderUI.js";
 import { movieService } from "./movieService.js";
 
@@ -16,7 +14,6 @@ class domApp {
   }
 
   setStartPage() {
-    console.log(this.getInfoAboutAOT());
     renderUI.renderMessage(this.containerId);
     this.addEventListeners();
   }
@@ -31,7 +28,7 @@ class domApp {
   getMoviesByQuerry = async () => {
     if (this.movieCache.has(this.searchQuerry + this.currentPage)) {
       this.searchResult = this.movieCache.get(this.searchQuerry + this.currentPage);
-      console.log('Cache works')
+      console.log('Cache works');
     } else {
       this.searchResult = await movieService.getFullMovie(
         this.searchQuerry,
@@ -39,7 +36,7 @@ class domApp {
         `&page=${this.currentPage}`
       );
       this.movieCache.set(this.searchQuerry + this.currentPage, this.searchResult);
-      console.log('fetch data')
+      console.log('fetch data');
     }
 
     if (this.searchResult.Error) {
