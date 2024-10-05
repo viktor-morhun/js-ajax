@@ -5,9 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HW - AJAX</title>
   <link rel="stylesheet" href="style.css">
-  <script src="domApp.js" defer type="module"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
 </head>
 <body>
-  
+   <header class="header">
+    <div class="header__logo-container">
+        <a class="header__logo" href="#" onclick="window.location.reload(true);">MovieFlix</a>
+    </div>
+    <nav class="header__nav">
+        <a href="#" class="header__link">Home</a>
+        <a href="#" class="header__link">TV Shows</a>
+        <a href="#" class="header__link header__link-active">Movies</a>
+        <a href="#" class="header__link">Latest</a>
+        <a href="#" class="header__link">My List</a>
+    </nav>
+    <div class="header__search">
+        <form id="movie-search-form" class="header__search-form">
+            <input type="text" id="movie-title" class="header__search-input" placeholder="Titles, genres, people">
+            <!-- <select id="type" class="header__search-select">
+                <option value="movie">Movie</option>
+                <option value="series">Series</option>
+                <option value="episode">Episode</option>
+            </select> -->
+            <button type="submit" class="header__search-button" id="movie-search-button">Search</button>
+        </form>
+    </div>
+</header>
+
+<main class="content">
+    <section class="movie-carousel">
+        <h2 class="movie-carousel__title">Search Results</h2>
+        <div id="results-container" class="movie-carousel__list">
+
+        </div>
+    </section>
+    <div  id="mainContent"></div>
+    <div id="pagination-container" class="pagination-container">
+
+    </div> 
+</main>
+
+<footer class="footer">
+    <p class="footer__text">© 2049 MovieFlix</p>
+</footer>
+<script src="domApp.js" defer type="module"></script>
+
 </body>
 </html>
